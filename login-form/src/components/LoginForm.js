@@ -32,6 +32,25 @@ class LoginForm extends Component {
     event.preventDefault()
   }
 
+
+//   handleLogin(params) {
+//   // if (window.confirm(`Are you sure you want to login??? params are: name: ${params.name}, password: ${params.password}`))
+//     this.setState({nameOrPasswordError: false}) //resetting the state
+//     api.logIn(params) //calling logIn function in api/index.js
+//     .then(response => {
+//       if(response.user == null && response.error != null) { //if user doesn't exist, or if there is an error...
+//       this.setState({nameOrPasswordError: true}) //need to pass this down to LoginForm
+//       console.log("response error")
+//       return
+//     }
+//     localStorage.setItem("jwt", response.token)
+//     this.setState({
+//       user: response.user //this needs to be in StoryContainer
+//     })
+//     this.props.history.push('/')
+//   })
+// }
+
   render() {
     console.log('state from LoginForm: ', this.state)
     return (
