@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 
 import { Button, Form } from 'semantic-ui-react'
 
+import * as api from '../api'
+
 class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state =
     {
       username: '',
-      password: ''
+      password: '',
+      success: '',
+
     }
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
@@ -30,6 +34,21 @@ class LoginForm extends Component {
   handleSubmit(event) {
     alert('username and password submitted: ' + this.state.username + ' ' + this.state.password)
     event.preventDefault()
+    this.handleLogin(this.state)
+  }
+
+  handleLogin(params) {
+    console.log('calling handleLogin with params: ', params)
+    api.logIn(params) //calling login function in api/index.js
+    .then(response => {
+      if(response.user == null && response.error != null) {
+        this.setState({success: false})
+        console.log("response error from API")
+        return
+      }
+      this.setState({success: true})
+      console.log("user exists! successful login....")
+    })
   }
 
 
